@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 // mode
-int mode = 0;
+int mode = 1;
 
 // maps
 String[] map1 = new String[16];
@@ -28,7 +28,7 @@ void createD1() {
 void dictionaries(){
   if (mode == 0){
     try{
-    File file = new File("dict1.txt");
+    File file = new File("dictionaries/dict1.txt");
     Scanner sc = new Scanner (file);
     while (sc.hasNext()){
       dictionary.add(sc.next());     
@@ -40,7 +40,7 @@ void dictionaries(){
   }
   else if (mode == 1){
     try{
-    File file = new File("dict2.txt");
+    File file = new File("dictionaries/dict2.txt");
     Scanner sc = new Scanner (file);
     while (sc.hasNext()){
       dictionary.add(sc.next());     
@@ -52,7 +52,7 @@ void dictionaries(){
   }
   else{
         try{
-    File file = new File("dict3.txt");
+    File file = new File("dictionaries/dict3.txt");
     Scanner sc = new Scanner (file);
     while (sc.hasNext()){
       dictionary.add(sc.next());     
@@ -68,6 +68,7 @@ void setup() {
   size(650, 800);
   width = 650;
   height = 800;
+  dictionaries();
 }
 
 void draw() {
