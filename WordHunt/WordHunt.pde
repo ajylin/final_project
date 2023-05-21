@@ -13,11 +13,8 @@ String[] map3 = new String[16];
 //dictionaries
 ArrayList <String> dictionary = new ArrayList <String>();
 
-<<<<<<< HEAD
-// scores!
-=======
+
 // scores
->>>>>>> margaux
 int words = 0;
 int score = 0;
 
@@ -95,26 +92,15 @@ void draw() {
   }
   score();
 }
-<<<<<<< HEAD
 
-void score(){
-  fill (255,255,255);
-  rect (52,35, 550, 120, 28);
-  fill(51, 105, 3);
-=======
 void score(){
   fill (255,255,255);
   rect (52,35,550,120,28);
   fill (51,105,3);
->>>>>>> margaux
   textSize(30);
   text("Words: " + words, 65, 70);
   textSize(68);
   text("Score: " + score, 65, 130);
-<<<<<<< HEAD
-  
-=======
->>>>>>> margaux
 }
 
 void reset() {
