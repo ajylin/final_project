@@ -13,6 +13,10 @@ String[] map3 = new String[16];
 //dictionaries
 ArrayList <String> dictionary = new ArrayList <String>();
 
+// scores!
+int words = 0;
+int score = 0;
+
 /*
 void createD1() {
   File file = new File("dictionaries/dict2");
@@ -85,10 +89,23 @@ void draw() {
       rect(startX*125+75, startY*125+225, 125, 125, 28);
     }
   }
+  score();
+}
+
+void score(){
+  fill (255,255,255);
+  rect (52,35, 550, 120, 28);
+  fill(51, 105, 3);
+  textSize(30);
+  text("Words: " + words, 65, 70);
+  textSize(68);
+  text("Score: " + score, 65, 130);
+  
 }
 
 void reset() {
 }
+
 
 void mousePressed() {
 }
