@@ -12,6 +12,7 @@ ArrayList<String> dict1 = new ArrayList<String>();
 ArrayList<String> dict2 = new ArrayList<String>();
 ArrayList<String> dict3 = new ArrayList<String>();
 
+/*
 void createD1() {
   File file = new File("dictionaries/dict2");
   Scanner input = new Scanner(file);
@@ -21,11 +22,28 @@ void createD1() {
     System.out.println(word);
   }
 }
+*/
 
 void setup() {
+  size(650, 800);
+  width = 650;
+  height = 800;
 }
 
 void draw() {
+  background(179, 215, 146);
+  fill(51, 105, 3);
+  stroke(206, 246, 170);
+  strokeWeight(7);
+  rect(50, 200, 550, 550, 28);
+  for (int startX = 0; startX < 4; startX++) {
+    for (int startY = 0; startY < 4; startY++) {
+      stroke(51, 105, 3);
+      strokeWeight(8);
+      fill(241, 222, 189);
+      rect(startX*125+75, startY*125+225, 125, 125, 28);
+    }
+  }
 }
 
 void reset() {
