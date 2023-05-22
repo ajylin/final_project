@@ -13,6 +13,7 @@ String[] map3 = new String[16];
 //dictionaries
 String[] dictionary;
 
+
 // scores
 int words = 0;
 int score = 0;
@@ -73,6 +74,7 @@ void draw() {
   }
   score();
 }
+
 void score(){
   fill (255,255,255);
   rect (52,35,550,120,28);
@@ -85,6 +87,7 @@ void score(){
 
 void reset() {
 }
+
 
 void mousePressed() {
 }
