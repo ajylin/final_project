@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 // mode
-int mode = 1;
+int mode = 2;
 
 // maps
 String[] map1 = new String[16];
@@ -11,7 +11,7 @@ String[] map2 = new String[16];
 String[] map3 = new String[16];
 
 //dictionaries
-ArrayList <String> dictionary = new ArrayList <String>();
+String[] dictionary;
 
 // scores
 int words = 0;
@@ -31,40 +31,22 @@ void createD1() {
 
 void dictionaries(){
   if (mode == 0){
-    try{
-    File file = new File("dictionaries/dict1.txt");
-    Scanner sc = new Scanner (file);
-    while (sc.hasNext()){
-      dictionary.add(sc.next());     
-    }
-    }
-    catch (IOException e){
-      System.out.println(e);
-    }
+    dictionary = loadStrings("dictionaries/dict1.txt");
+    for (int i = 0 ; i < dictionary.length; i++) {
+      System.out.println(dictionary[i]);
+      }
   }
   else if (mode == 1){
-    try{
-    File file = new File("dictionaries/dict2.txt");
-    Scanner sc = new Scanner (file);
-    while (sc.hasNext()){
-      dictionary.add(sc.next());     
-    }
-    }
-    catch (IOException e){
-      System.out.println("Problem opening file.");
-    }
+    dictionary = loadStrings("dictionaries/dict2.txt");
+    for (int i = 0 ; i < dictionary.length; i++) {
+      System.out.println(dictionary[i]);
+      }
   }
   else{
-        try{
-    File file = new File("dictionaries/dict3.txt");
-    Scanner sc = new Scanner (file);
-    while (sc.hasNext()){
-      dictionary.add(sc.next());     
-    }
-    }
-    catch (IOException e){
-      System.out.println("Problem opening file.");
-    }
+    dictionary = loadStrings("dictionaries/dict3.txt");
+    for (int i = 0 ; i < dictionary.length; i++) {
+      System.out.println(dictionary[i]);
+      }
   }
 }
 
@@ -115,7 +97,7 @@ void mouseDragged() {
 
 void mode1(){
 }
-
+/*
 void mode2(){
   File file = new File("mode2.txt");
   Scanner input = new Scanner(file);
@@ -125,6 +107,7 @@ void mode2(){
   }
   input.close();
 }
+*/
 
 void mode3(){
 }
