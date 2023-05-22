@@ -14,8 +14,9 @@ ArrayList<String> dict3 = new ArrayList<String>();
 
 /*
 void createD1() {
-  File file = new File("dictionaries/dict2");
+  File file = new File("modes/mode2");
   Scanner input = new Scanner(file);
+  input.nextLine();
   while (input.hasNextLine()){
     String word = input.nextLine();
     dict2.add(word);
@@ -56,4 +57,19 @@ void mouseMoved() {
 }
 
 void mouseDragged() {
+}
+
+void mode1(){
+}
+
+void mode2(){
+  File file = new File("modes/mode2.txt");
+  Scanner input = new Scanner(file);
+  String firstLine = input.nextLine();
+  for (int index = 0; index < 16; index++) {
+    map2[index] = firstLine.substring(index, index++);
+  }
+}
+
+void mode3(){
 }
