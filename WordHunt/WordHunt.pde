@@ -63,12 +63,13 @@ void mode1(){
 }
 
 void mode2(){
-  File file = new File("modes/mode2.txt");
+  File file = new File("mode2.txt");
   Scanner input = new Scanner(file);
   String firstLine = input.nextLine();
   for (int index = 0; index < 16; index++) {
     map2[index] = firstLine.substring(index, index++);
   }
+  input.close();
 }
 
 void mode3(){
