@@ -6,9 +6,7 @@ import java.util.Scanner;
 int mode = 2;
 
 // maps
-String[] map1 = new String[16];
-String[] map2 = new String[16];
-String[] map3 = new String[16];
+String[][] map = new String[4][4];
 
 //dictionaries
 String[] dictionary;
@@ -98,6 +96,7 @@ void mouseMoved() {
 void mouseDragged() {
 }
 
+<<<<<<< HEAD
 void mode1(){
 }
 /*
@@ -113,4 +112,29 @@ void mode2(){
 */
 
 void mode3(){
+=======
+void maps() {
+  if (mode == 1) {
+    String[] row = loadStrings("map1.txt");
+    for (int indexR = 0; indexR < 4; indexR++) {
+      for (int indexC = 0; indexC < 4; indexC++) {
+        map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
+      }
+    }
+    if (mode == 2) {
+    String[] row = loadStrings("map2.txt");
+    for (int indexR = 0; indexR < 4; indexR++) {
+      for (int indexC = 0; indexC < 4; indexC++) {
+        map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
+      }
+    }
+    if (mode == 3) {
+    String[] row = loadStrings("map3.txt");
+    for (int indexR = 0; indexR < 4; indexR++) {
+      for (int indexC = 0; indexC < 4; indexC++) {
+        map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
+      }
+    }
+  }
+>>>>>>> angela
 }
