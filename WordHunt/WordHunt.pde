@@ -95,6 +95,7 @@ void mouseMoved() {
 
 void mouseDragged() {
 }
+<<<<<<< HEAD
 
 void maps() {
   if (mode == 1) {
@@ -130,3 +131,5 @@ void maps() {
     }
   }
 }
+=======
+>>>>>>> 8a0b440bfd50d5b0c581db2d2b19a1368e32a944
