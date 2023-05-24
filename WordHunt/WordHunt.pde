@@ -96,23 +96,6 @@ void mouseMoved() {
 void mouseDragged() {
 }
 
-<<<<<<< HEAD
-void mode1(){
-}
-/*
-void mode2(){
-  File file = new File("mode2.txt");
-  Scanner input = new Scanner(file);
-  String firstLine = input.nextLine();
-  for (int index = 0; index < 16; index++) {
-    map2[index] = firstLine.substring(index, index++);
-  }
-  input.close();
-}
-*/
-
-void mode3(){
-=======
 void maps() {
   if (mode == 1) {
     String[] row = loadStrings("map1.txt");
@@ -121,14 +104,24 @@ void maps() {
         map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
       }
     }
-    if (mode == 2) {
+    for (int startX = 0; startX < 4; startX++) {
+      for (int startY = 0; startY < 4; startY++) {
+        stroke(51, 105, 3);
+        strokeWeight(8);
+        fill(241, 222, 189);
+        rect(startX*125+75, startY*125+225, 125, 125, 28);
+      }
+    }
+  }
+  if (mode == 2) {
     String[] row = loadStrings("map2.txt");
     for (int indexR = 0; indexR < 4; indexR++) {
       for (int indexC = 0; indexC < 4; indexC++) {
         map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
       }
     }
-    if (mode == 3) {
+   }
+  if (mode == 3) {
     String[] row = loadStrings("map3.txt");
     for (int indexR = 0; indexR < 4; indexR++) {
       for (int indexC = 0; indexC < 4; indexC++) {
@@ -136,5 +129,4 @@ void maps() {
       }
     }
   }
->>>>>>> angela
 }
