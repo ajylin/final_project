@@ -6,7 +6,7 @@ import java.util.Scanner;
 int mode = 0;
 
 // maps
-public String[][] map = new String[4][4];
+String[] map = new String[4];
 
 //dictionaries
 String[] dictionary;
@@ -37,36 +37,6 @@ void dictionaries(){
       }
   }
 }
-void maps() {
-  if (mode == 0) {
-    String[] row = new String[4];
-    row = loadStrings("maps/map1.txt");
-    for (int i = 0; i<4; i++){
-    }
-    System.out.println(row);
-    for (int indexR = 0; indexR < 4; indexR++) {
-      for (int indexC = 0; indexC < 4; indexC++) {
-        map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
-      }
-    }
-  }
-  if (mode == 1) {
-    String[] row = loadStrings("maps/map2.txt");
-    for (int indexR = 0; indexR < 4; indexR++) {
-      for (int indexC = 0; indexC < 4; indexC++) {
-        map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
-      }
-    }
-   }
-  if (mode == 2) {
-    String[] row = loadStrings("maps/map3.txt");
-    for (int indexR = 0; indexR < 4; indexR++) {
-      for (int indexC = 0; indexC < 4; indexC++) {
-        map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
-      }
-    }
-  }
-}
 
 void setup() {
   size(650, 800);
@@ -74,20 +44,14 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
-  System.out.println(mode);
-  for (int i = 0; i<4; i++){
-    for (int j = 0; j<4; j++){
-      System.out.println(map[i][j]);
-    }
-  }
-  board();
+  
 }
 
 void draw() {
   background(179, 215, 146);
   fill(51, 105, 3);
-  //board();
   score();
+  board();
 }
 
 void board() {
@@ -99,12 +63,15 @@ void board() {
       stroke(51, 105, 3);
       strokeWeight(7);
       fill(241, 222, 189);
-      Tile tile = new Tile(startX, startY);
-      for (int row = 0; row < 4; row++) {
+      Tile tile = new Tile(startX, startY, map);
+      /*for (int row = 0; row < 4; row++) {
         for (int col = 0; col < 4; col++) {
-          tile.letter(row, col, map);
+          textSize(50);
+          tile.letterSetter(row, col, map);
+          text(tile.letter, row*188+90+58, col*118+285+58);
         }
       }
+      */
     }
   }
 }
@@ -121,27 +88,8 @@ void score(){
 }
 
 void reset() {
-  score = 0;
-  words = 0;
-  setup();
 }
 
-void keyPressed(){
-  if (keyPressed){
-    if (key== CODED){
-      if (keyCode == LEFT){
-        mode--;
-        if (mode <0) mode = 2;
-        reset();
-      }
-      if (keyCode == RIGHT){
-        mode++;
-        if (mode>2) mode = 0;
-        reset();
-      }
-    }  
-  }
-}
 
 void mousePressed() {
 }
@@ -150,4 +98,21 @@ void mouseMoved() {
 }
 
 void mouseDragged() {
+}
+
+void maps() {
+  if (mode == 0) {
+    map = loadStrings("maps/map1.txt");
+  }
+  if (mode == 1) {
+    map = loadStrings("maps/map2.txt");
+   }
+  if (mode == 2) {
+    map = loadStrings("maps/map3.txt");
+  }
+  /*for (int i =0; i<4; i++){
+      System.out.println(map[i]);
+  }
+  */
+  
 }

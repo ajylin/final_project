@@ -1,12 +1,18 @@
 class Tile {
-  public Tile(int startX, int startY){
+  public String letter;
+  
+  public Tile(int startX, int startY, String[] map){
     rect(startX*118+90, startY*118+285, 116, 116, 28);
+    letter = map[startX].substring(startY, startY++);
+    text(letter, startX*188+90+58, startY*118+285+58);
+    print(letter);
   }
   
-  public void letter(int row, int col, String[][] map) {
-    textSize(50);
-    String letter = map[row][col];
-    //System.out.println(letter);
-    text(letter, row*188+90+58, col*118+285+58);
+  /*
+  public String getl(int row, int col, String[] map) {
+    
+    letter = rowX.substring(col, col++); 
+    return letter;
   }
+  */
 }
