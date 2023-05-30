@@ -6,7 +6,7 @@ import java.util.Scanner;
 int mode = 0;
 
 // maps
-String[] map = new String[4];
+public String[][] map = new String[4][4];
 
 //dictionaries
 String[] dictionary;
@@ -37,7 +37,6 @@ void dictionaries(){
       }
   }
 }
-
 void maps() {
   String [] tempMap = new String [4];
   int start = 0;
@@ -77,6 +76,7 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
+  //board();
 }
 
 void draw() {
@@ -84,6 +84,7 @@ void draw() {
   fill(51, 105, 3);
   board();
   score();
+  
 }
 
 void board() {
@@ -96,7 +97,6 @@ void board() {
       strokeWeight(7);
       fill(241, 222, 189);
       Tile tile = new Tile(startX, startY, map);
-
       fill (0,0,0);
       textSize(100);
       text(tile.letter, startX*188+105, startY*118+370);
@@ -116,8 +116,27 @@ void score(){
 }
 
 void reset() {
+  score = 0;
+  words = 0;
+  setup();
 }
 
+void keyPressed(){
+  if (keyPressed){
+    if (key== CODED){
+      if (keyCode == LEFT){
+        mode--;
+        if (mode <0) mode = 2;
+        reset();
+      }
+      if (keyCode == RIGHT){
+        mode++;
+        if (mode>2) mode = 0;
+        reset();
+      }
+    }  
+  }
+}
 
 void mousePressed() {
 }
@@ -126,21 +145,4 @@ void mouseMoved() {
 }
 
 void mouseDragged() {
-}
-
-void maps() {
-  if (mode == 0) {
-    map = loadStrings("maps/map1.txt");
-  }
-  if (mode == 1) {
-    map = loadStrings("maps/map2.txt");
-   }
-  if (mode == 2) {
-    map = loadStrings("maps/map3.txt");
-  }
-  /*for (int i =0; i<4; i++){
-      System.out.println(map[i]);
-  }
-  */
-  
 }
