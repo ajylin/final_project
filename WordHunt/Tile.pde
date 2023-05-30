@@ -16,5 +16,5 @@ class Tile {
     String letter = map[xInt][yInt];
     //System.out.println(letter);
     text(letter, xInt*188+90+58, yInt*118+285+58);
-  }
+}
 }
