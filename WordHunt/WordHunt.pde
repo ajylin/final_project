@@ -38,34 +38,36 @@ void dictionaries(){
   }
 }
 void maps() {
-  if (mode == 0) {
-    String[] row = new String[4];
-    row = loadStrings("maps/map1.txt");
-    for (int i = 0; i<4; i++){
+  String [] tempMap = new String [4];
+  int start = 0;
+  int xPos = 0;
+  int yPos = 0;
+  if (mode ==0){
+    tempMap = loadStrings("maps/map1.txt");
+    for (String s : tempMap){
+      System.out.println(s);
     }
-    System.out.println(row);
-    for (int indexR = 0; indexR < 4; indexR++) {
-      for (int indexC = 0; indexC < 4; indexC++) {
-        map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
-      }
     }
-  }
-  if (mode == 1) {
-    String[] row = loadStrings("maps/map2.txt");
-    for (int indexR = 0; indexR < 4; indexR++) {
-      for (int indexC = 0; indexC < 4; indexC++) {
-        map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
-      }
+   if (mode ==1){
+    tempMap = loadStrings("maps/map2.txt");
+    for (String s : tempMap){
+      System.out.println(s);
     }
    }
-  if (mode == 2) {
-    String[] row = loadStrings("maps/map3.txt");
-    for (int indexR = 0; indexR < 4; indexR++) {
-      for (int indexC = 0; indexC < 4; indexC++) {
-        map[indexR][indexC] = row[indexR].substring(indexC, indexC++);
+   if (mode ==2){
+    tempMap = loadStrings("maps/map3.txt");
+    for (String s : tempMap){
+      System.out.println(s);
+    }
+   }
+    
+    for (int row = 0; row <4; row++){
+      for (int col = 0; col<4; col++){
+        if (start == 4) start = 0;
+        map[row][col] = tempMap[start];
+        start++;
       }
     }
-  }
 }
 
 void setup() {
@@ -74,20 +76,15 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
-  System.out.println(mode);
-  for (int i = 0; i<4; i++){
-    for (int j = 0; j<4; j++){
-      System.out.println(map[i][j]);
-    }
-  }
-  board();
+  //board();
 }
 
 void draw() {
   background(179, 215, 146);
   fill(51, 105, 3);
-  //board();
+  board();
   score();
+  
 }
 
 void board() {
@@ -100,11 +97,9 @@ void board() {
       strokeWeight(7);
       fill(241, 222, 189);
       Tile tile = new Tile(startX, startY, map);
-      for (int row = 0; row < 4; row++) {
-        for (int col = 0; col < 4; col++) {
-          tile.line(map);
-        }
-      }
+      fill (0,0,0);
+      textSize(100);
+      text(tile.letter, startX*188+105, startY*118+370);
     }
   }
 }
