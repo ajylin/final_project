@@ -37,7 +37,7 @@ void dictionaries(){
       }
   }
 }
-<<<<<<< HEAD
+
 void maps() {
   String [] tempMap = new String [4];
   int start = 0;
@@ -70,8 +70,6 @@ void maps() {
       }
     }
 }
-=======
->>>>>>> 4fb0d9a96828a3a0e9da905e99a9c6578b45fe75
 
 void setup() {
   size(650, 800);
@@ -79,24 +77,13 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
-<<<<<<< HEAD
-  //board();
-=======
-  
->>>>>>> 4fb0d9a96828a3a0e9da905e99a9c6578b45fe75
 }
 
 void draw() {
   background(179, 215, 146);
   fill(51, 105, 3);
-<<<<<<< HEAD
   board();
   score();
-  
-=======
-  score();
-  board();
->>>>>>> 4fb0d9a96828a3a0e9da905e99a9c6578b45fe75
 }
 
 void board() {
@@ -109,16 +96,10 @@ void board() {
       strokeWeight(7);
       fill(241, 222, 189);
       Tile tile = new Tile(startX, startY, map);
-<<<<<<< HEAD
+
       fill (0,0,0);
       textSize(100);
       text(tile.letter, startX*188+105, startY*118+370);
-=======
-
-      for (int row = 0; row < 4; row++) {
-        for (int col = 0; col < 4; col++) {
-          tile.line(map);
->>>>>>> 4fb0d9a96828a3a0e9da905e99a9c6578b45fe75
     }
   }
 }
