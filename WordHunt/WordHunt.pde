@@ -38,20 +38,52 @@ void dictionaries(){
   }
 }
 
+void maps() {
+  String [] tempMap = new String [4];
+  int start = 0;
+  int xPos = 0;
+  int yPos = 0;
+  if (mode ==0){
+    tempMap = loadStrings("maps/map1.txt");
+    for (String s : tempMap){
+      System.out.println(s);
+    }
+    }
+   if (mode ==1){
+    tempMap = loadStrings("maps/map2.txt");
+    for (String s : tempMap){
+      System.out.println(s);
+    }
+   }
+   if (mode ==2){
+    tempMap = loadStrings("maps/map3.txt");
+    for (String s : tempMap){
+      System.out.println(s);
+    }
+   }
+    
+    for (int row = 0; row <4; row++){
+      for (int col = 0; col<4; col++){
+        if (start == 4) start = 0;
+        map[row][col] = tempMap[start];
+        start++;
+      }
+    }
+}
+
 void setup() {
   size(650, 800);
   width = 650;
   height = 800;
   dictionaries();
   maps();
-  
 }
 
 void draw() {
   background(179, 215, 146);
   fill(51, 105, 3);
-  score();
   board();
+  score();
 }
 
 void board() {
@@ -65,9 +97,9 @@ void board() {
       fill(241, 222, 189);
       Tile tile = new Tile(startX, startY, map);
 
-      for (int row = 0; row < 4; row++) {
-        for (int col = 0; col < 4; col++) {
-          tile.line(map);
+      fill (0,0,0);
+      textSize(100);
+      text(tile.letter, startX*188+105, startY*118+370);
     }
   }
 }
