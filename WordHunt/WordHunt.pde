@@ -99,10 +99,10 @@ void board() {
       stroke(51, 105, 3);
       strokeWeight(7);
       fill(241, 222, 189);
-      Tile tile = new Tile(startX, startY);
+      Tile tile = new Tile(startX, startY, map);
       for (int row = 0; row < 4; row++) {
         for (int col = 0; col < 4; col++) {
-          tile.letter(row, col, map);
+          tile.line(map);
         }
       }
     }
