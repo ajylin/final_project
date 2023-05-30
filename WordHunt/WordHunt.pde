@@ -64,14 +64,10 @@ void board() {
       strokeWeight(7);
       fill(241, 222, 189);
       Tile tile = new Tile(startX, startY, map);
-      /*for (int row = 0; row < 4; row++) {
+
+      for (int row = 0; row < 4; row++) {
         for (int col = 0; col < 4; col++) {
-          textSize(50);
-          tile.letterSetter(row, col, map);
-          text(tile.letter, row*188+90+58, col*118+285+58);
-        }
-      }
-      */
+          tile.line(map);
     }
   }
 }
