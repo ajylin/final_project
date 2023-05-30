@@ -6,7 +6,7 @@ import java.util.Scanner;
 int mode = 0;
 
 // maps
-public String[][] map = new String[4][4];
+String[] map = new String[4];
 
 //dictionaries
 String[] dictionary;
@@ -37,6 +37,7 @@ void dictionaries(){
       }
   }
 }
+<<<<<<< HEAD
 void maps() {
   String [] tempMap = new String [4];
   int start = 0;
@@ -69,6 +70,8 @@ void maps() {
       }
     }
 }
+=======
+>>>>>>> 4fb0d9a96828a3a0e9da905e99a9c6578b45fe75
 
 void setup() {
   size(650, 800);
@@ -76,15 +79,24 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
+<<<<<<< HEAD
   //board();
+=======
+  
+>>>>>>> 4fb0d9a96828a3a0e9da905e99a9c6578b45fe75
 }
 
 void draw() {
   background(179, 215, 146);
   fill(51, 105, 3);
+<<<<<<< HEAD
   board();
   score();
   
+=======
+  score();
+  board();
+>>>>>>> 4fb0d9a96828a3a0e9da905e99a9c6578b45fe75
 }
 
 void board() {
@@ -97,9 +109,16 @@ void board() {
       strokeWeight(7);
       fill(241, 222, 189);
       Tile tile = new Tile(startX, startY, map);
+<<<<<<< HEAD
       fill (0,0,0);
       textSize(100);
       text(tile.letter, startX*188+105, startY*118+370);
+=======
+
+      for (int row = 0; row < 4; row++) {
+        for (int col = 0; col < 4; col++) {
+          tile.line(map);
+>>>>>>> 4fb0d9a96828a3a0e9da905e99a9c6578b45fe75
     }
   }
 }
@@ -116,27 +135,8 @@ void score(){
 }
 
 void reset() {
-  score = 0;
-  words = 0;
-  setup();
 }
 
-void keyPressed(){
-  if (keyPressed){
-    if (key== CODED){
-      if (keyCode == LEFT){
-        mode--;
-        if (mode <0) mode = 2;
-        reset();
-      }
-      if (keyCode == RIGHT){
-        mode++;
-        if (mode>2) mode = 0;
-        reset();
-      }
-    }  
-  }
-}
 
 void mousePressed() {
 }
@@ -145,4 +145,21 @@ void mouseMoved() {
 }
 
 void mouseDragged() {
+}
+
+void maps() {
+  if (mode == 0) {
+    map = loadStrings("maps/map1.txt");
+  }
+  if (mode == 1) {
+    map = loadStrings("maps/map2.txt");
+   }
+  if (mode == 2) {
+    map = loadStrings("maps/map3.txt");
+  }
+  /*for (int i =0; i<4; i++){
+      System.out.println(map[i]);
+  }
+  */
+  
 }
