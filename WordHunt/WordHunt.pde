@@ -17,7 +17,7 @@ int words = 0;
 int score = 0;
 
 
-void dictionaries(){
+void dictionaries() {
   if (mode == 0){
     dictionary = loadStrings("dictionaries/dict1.txt");
     for (int i = 0 ; i < dictionary.length; i++) {
@@ -55,6 +55,8 @@ void draw() {
 }
 
 void board() {
+  // new 2d array
+  
   stroke(206, 246, 170);
   strokeWeight(7);
   rect(80, 275, 490, 490, 28);
@@ -70,7 +72,7 @@ void board() {
 }
 
 
-void score(){
+void score() {
   fill (255,255,255);
   rect (80,35,490,105,28);
   fill (51,105,3);
@@ -95,30 +97,15 @@ void mouseDragged() {
 
 void maps() {
   if (mode == 0) {
-    String[] letters = loadStrings("maps/map1.txt");
-    for( int row = 0; row < 4; row++ ){
-      for( int col = 0; col < 4; col++ ){
-        map[row][col] = letters[row].substring(col, col++);
-      }
-    }
+    map = loadStrings("maps/map1.txt");
   }
   if (mode == 1) {
-    String[] letters = loadStrings("maps/map2.txt");
-    for( int row = 0; row < 4; row++ ){
-      for( int col = 0; col < 4; col++ ){
-        map[row][col] = letters[row].substring(col, col++);
-      }
-    }
+    map = loadStrings("maps/map2.txt");
    }
   if (mode == 2) {
-    String[] letters = loadStrings("maps/map3.txt");
-    for( int row = 0; row < 4; row++ ){
-      for( int col = 0; col < 4; col++ ){
-        map[row][col] = letters[row].substring(col, col++);
-      }
-    }
+    map = loadStrings("maps/map3.txt");
   }
-  for (int i =0; i<4; i++){
+  for (int i =0; i<4; i++) {
       System.out.println(map[i]);
   }
   
