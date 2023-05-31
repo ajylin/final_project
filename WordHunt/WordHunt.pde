@@ -6,22 +6,31 @@ import java.util.Scanner;
 int mode = 0;
 
 // maps
-<<<<<<< HEAD
-String[][] map = new String[4][4];
-=======
 public String[][] map = new String[4][4];
->>>>>>> d3775dd1c59e8bff38169c1de2a4fbc3171ad24f
 
 //dictionaries
 String[] dictionary;
 
+//tiles
+Tile tile0 = new Tile(0, 0, map);
+Tile tile1 = new Tile(1, 0, map);
+Tile tile2 = new Tile(2, 0, map);
+Tile tile4 = new Tile(3, 0, map);
+Tile tile5 = new Tile(0, 1, map);
+Tile tile6 = new Tile(1, 1, map);
+Tile tile7 = new Tile(2, 1, map);
+Tile tile8 = new Tile(3, 1, map);
+Tile tile9 = new Tile(0, 2, map);
+Tile tile10 = new Tile(1, 2, map);
+Tile tile11 = new Tile(2, 2, map);
+Tile tile12 = new Tile(3, 2, map);
 
 // scores
 int words = 0;
 int score = 0;
 
 
-void dictionaries() {
+void dictionaries(){
   if (mode == 0){
     dictionary = loadStrings("dictionaries/dict1.txt");
     for (int i = 0 ; i < dictionary.length; i++) {
@@ -67,55 +76,45 @@ void maps() {
     
     for (int row = 0; row <4; row++){
       for (int col = 0; col<4; col++){
-        if (start == 4) start = 0;
-        map[row][col] = tempMap[start];
-        start++;
+        map[row][col] = tempMap[row].substring(col, col+1);
       }
     }
 }
 
 void setup() {
   size(650, 800);
+  background(179, 215, 146);
+  fill(51, 105, 3);
   width = 650;
   height = 800;
   dictionaries();
   maps();
-  //board();
+  board();
 }
 
 void draw() {
-  background(179, 215, 146);
-  fill(51, 105, 3);
-  board();
-  score();
-  
+  score();  
 }
 
 void board() {
-  // new 2d array
-  
   stroke(206, 246, 170);
   strokeWeight(7);
+  int tileNum = 0;
   rect(80, 275, 490, 490, 28);
+  //Tile 
+  /*
   for (int startX = 0; startX < 4; startX++) {
     for (int startY = 0; startY < 4; startY++) {
-      stroke(51, 105, 3);
-      strokeWeight(7);
-      fill(241, 222, 189);
       Tile tile = new Tile(startX, startY, map);
-<<<<<<< HEAD
-      tile.line();
-=======
-      fill (0,0,0);
-      textSize(100);
-      text(tile.letter, startX*188+105, startY*118+370);
->>>>>>> d3775dd1c59e8bff38169c1de2a4fbc3171ad24f
+      tileNum++;
     }
   }
+  */
+  System.out.print(tileNum);
 }
 
 
-void score() {
+void score(){
   fill (255,255,255);
   rect (80,35,490,105,28);
   fill (51,105,3);
@@ -155,23 +154,5 @@ void mouseMoved() {
 }
 
 void mouseDragged() {
-}
-<<<<<<< HEAD
-
-void maps() {
-  if (mode == 0) {
-    map = loadStrings("maps/map1.txt");
-  }
-  if (mode == 1) {
-    map = loadStrings("maps/map2.txt");
-   }
-  if (mode == 2) {
-    map = loadStrings("maps/map3.txt");
-  }
-  for (int i =0; i<4; i++) {
-      System.out.println(map[i]);
-  }
   
 }
-=======
->>>>>>> d3775dd1c59e8bff38169c1de2a4fbc3171ad24f
