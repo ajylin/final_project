@@ -6,7 +6,11 @@ import java.util.Scanner;
 int mode = 0;
 
 // maps
+<<<<<<< HEAD
 String[][] map = new String[4][4];
+=======
+public String[][] map = new String[4][4];
+>>>>>>> d3775dd1c59e8bff38169c1de2a4fbc3171ad24f
 
 //dictionaries
 String[] dictionary;
@@ -37,6 +41,38 @@ void dictionaries() {
       }
   }
 }
+void maps() {
+  String [] tempMap = new String [4];
+  int start = 0;
+  int xPos = 0;
+  int yPos = 0;
+  if (mode ==0){
+    tempMap = loadStrings("maps/map1.txt");
+    for (String s : tempMap){
+      System.out.println(s);
+    }
+    }
+   if (mode ==1){
+    tempMap = loadStrings("maps/map2.txt");
+    for (String s : tempMap){
+      System.out.println(s);
+    }
+   }
+   if (mode ==2){
+    tempMap = loadStrings("maps/map3.txt");
+    for (String s : tempMap){
+      System.out.println(s);
+    }
+   }
+    
+    for (int row = 0; row <4; row++){
+      for (int col = 0; col<4; col++){
+        if (start == 4) start = 0;
+        map[row][col] = tempMap[start];
+        start++;
+      }
+    }
+}
 
 void setup() {
   size(650, 800);
@@ -44,14 +80,15 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
-  
+  //board();
 }
 
 void draw() {
   background(179, 215, 146);
   fill(51, 105, 3);
-  score();
   board();
+  score();
+  
 }
 
 void board() {
@@ -66,7 +103,13 @@ void board() {
       strokeWeight(7);
       fill(241, 222, 189);
       Tile tile = new Tile(startX, startY, map);
+<<<<<<< HEAD
       tile.line();
+=======
+      fill (0,0,0);
+      textSize(100);
+      text(tile.letter, startX*188+105, startY*118+370);
+>>>>>>> d3775dd1c59e8bff38169c1de2a4fbc3171ad24f
     }
   }
 }
@@ -83,8 +126,27 @@ void score() {
 }
 
 void reset() {
+  score = 0;
+  words = 0;
+  setup();
 }
 
+void keyPressed(){
+  if (keyPressed){
+    if (key== CODED){
+      if (keyCode == LEFT){
+        mode--;
+        if (mode <0) mode = 2;
+        reset();
+      }
+      if (keyCode == RIGHT){
+        mode++;
+        if (mode>2) mode = 0;
+        reset();
+      }
+    }  
+  }
+}
 
 void mousePressed() {
 }
@@ -94,6 +156,7 @@ void mouseMoved() {
 
 void mouseDragged() {
 }
+<<<<<<< HEAD
 
 void maps() {
   if (mode == 0) {
@@ -110,3 +173,5 @@ void maps() {
   }
   
 }
+=======
+>>>>>>> d3775dd1c59e8bff38169c1de2a4fbc3171ad24f
