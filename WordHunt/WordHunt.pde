@@ -11,7 +11,6 @@ public String[][] map = new String[4][4];
 //dictionaries
 String[] dictionary;
 
-
 // scores
 int words = 0;
 int score = 0;
@@ -83,7 +82,7 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
-  //board();
+  board();
 }
 
 void draw() {
@@ -100,6 +99,7 @@ void currentWord(){
   textSize(50);
   text(currentWord, 100, 215);
   //rect (80,159,480,100, 22);
+  score();  
 }
 
 void board() {
@@ -110,7 +110,6 @@ void board() {
   for (int startY = 0; startY < 4; startY++) {
     for (int startX = 0; startX < 4; startX++) {
       tiles[tileNum] = new Tile(startX, startY, map);
-      tileNum++;
     }
   }
 }

@@ -16,5 +16,4 @@ class Tile {
     textSize(100);
     text(letter, xInt+20, yInt+90);
   }
-  
 }
