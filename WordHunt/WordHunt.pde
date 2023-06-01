@@ -66,9 +66,8 @@ void maps() {
       System.out.println(s);
     }
    }
-    
-    for (int row = 0; row <4; row++){
-      for (int col = 0; col<4; col++){
+   for (int row = 0; row <4; row++){
+     for (int col = 0; col<4; col++){
         map[row][col] = tempMap[row].substring(col, col+1);
       }
     }
@@ -82,7 +81,6 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
-  board();
 }
 
 void draw() {
@@ -97,9 +95,7 @@ void currentWord(){
   rect (80,159,480,100,28);
   fill (51,105,3);
   textSize(50);
-  text(currentWord, 100, 215);
-  //rect (80,159,480,100, 22);
-  score();  
+  text(currentWord, 100, 215); 
 }
 
 void board() {
@@ -110,6 +106,7 @@ void board() {
   for (int startY = 0; startY < 4; startY++) {
     for (int startX = 0; startX < 4; startX++) {
       tiles[tileNum] = new Tile(startX, startY, map);
+      tileNum++;
     }
   }
 }
