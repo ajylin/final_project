@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 // mode
-int mode = 0;
+int mode = 2;
 
 // maps
 public String[][] map = new String[4][4];
@@ -15,6 +15,13 @@ String[] dictionary;
 // scores
 int words = 0;
 int score = 0;
+
+// tiles
+public Tile[] tiles = new Tile[16];
+
+// current word
+public String currentWord = "";
+
 
 
 void dictionaries(){
@@ -63,15 +70,15 @@ void maps() {
     
     for (int row = 0; row <4; row++){
       for (int col = 0; col<4; col++){
-        if (start == 4) start = 0;
-        map[row][col] = tempMap[start];
-        start++;
+        map[row][col] = tempMap[row].substring(col, col+1);
       }
     }
 }
 
 void setup() {
   size(650, 800);
+  background(179, 215, 146);
+  fill(51, 105, 3);
   width = 650;
   height = 800;
   dictionaries();
@@ -81,25 +88,29 @@ void setup() {
 
 void draw() {
   background(179, 215, 146);
-  fill(51, 105, 3);
+  score();  
   board();
-  score();
-  
+  currentWord();
+}
+
+void currentWord(){
+  fill (255,255,255);
+  rect (80,159,480,100,28);
+  fill (51,105,3);
+  textSize(50);
+  text(currentWord, 100, 215);
+  //rect (80,159,480,100, 22);
 }
 
 void board() {
   stroke(206, 246, 170);
   strokeWeight(7);
+  int tileNum = 0;
   rect(80, 275, 490, 490, 28);
-  for (int startX = 0; startX < 4; startX++) {
-    for (int startY = 0; startY < 4; startY++) {
-      stroke(51, 105, 3);
-      strokeWeight(7);
-      fill(241, 222, 189);
-      Tile tile = new Tile(startX, startY, map);
-      fill (0,0,0);
-      textSize(100);
-      text(tile.letter, startX*188+105, startY*118+370);
+  for (int startY = 0; startY < 4; startY++) {
+    for (int startX = 0; startX < 4; startX++) {
+      tiles[tileNum] = new Tile(startX, startY, map);
+      tileNum++;
     }
   }
 }
@@ -139,10 +150,33 @@ void keyPressed(){
 }
 
 void mousePressed() {
+  for (Tile tile :tiles){
+      if (mouseX > tile.xInt && mouseX<tile.xInt + 116 && mouseY > tile.yInt && mouseY < tile.yInt+116){
+       System.out.println(tile.letter);
+  }
+  }  
+}
+
+void mouseReleased(){
+  for (String s :dictionary){
+    if (s.equals(currentWord)){
+      score += ((currentWord.length()-2) *100);
+      words++;
+    }
+    currentWord = "";
+  }
 }
 
 void mouseMoved() {
 }
 
 void mouseDragged() {
+    for (Tile tile :tiles){
+      if (mouseX > tile.xInt && mouseX<tile.xInt + 116 && mouseY > tile.yInt && mouseY < tile.yInt+116){
+       System.out.println(tile.letter);
+       //if (currentWord.
+       currentWord += tile.letter;
+       System.out.println(currentWord);
+  }
+  }
 }
