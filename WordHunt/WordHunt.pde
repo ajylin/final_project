@@ -20,6 +20,7 @@ public Tile[] tiles = new Tile[16];
 
 // current word
 public String currentWord = "";
+public ArrayList<Integer> usedIndexes = new ArrayList<Integer>();
 
 
 
@@ -146,33 +147,47 @@ void keyPressed(){
 }
 
 void mousePressed() {
-  for (Tile tile :tiles){
-      if (mouseX > tile.xInt && mouseX<tile.xInt + 116 && mouseY > tile.yInt && mouseY < tile.yInt+116){
-       System.out.println(tile.letter);
+  for (int index = 0; index < 16; index++) {
+      if (mouseX > tiles[index].xInt && mouseX < tiles[index].xInt + 116 && mouseY > tiles[index].yInt && mouseY < tiles[index].yInt+116) {
+        usedIndexes.add(index); 
+        currentWord += tiles[index].letter;
+        System.out.println(tiles[index].letter);
   }
   }  
 }
 
 void mouseReleased(){
-  for (String s :dictionary){
+  for (String s : dictionary){
     if (s.equals(currentWord)){
       score += ((currentWord.length()-2) *100);
       words++;
     }
     currentWord = "";
   }
+  usedIndexes.clear();
 }
 
 void mouseMoved() {
 }
 
 void mouseDragged() {
-    for (Tile tile :tiles){
-      if (mouseX > tile.xInt && mouseX<tile.xInt + 116 && mouseY > tile.yInt && mouseY < tile.yInt+116){
-       System.out.println(tile.letter);
-       //if (currentWord.
-       currentWord += tile.letter;
-       System.out.println(currentWord);
+  int newLetter = 0;
+  for (int index = 0; index < 16; index++) {
+    if (mouseX > tiles[index].xInt && mouseX < tiles[index].xInt + 116 && mouseY > tiles[index].yInt && mouseY < tiles[index].yInt + 116) {
+      if (alreadyUsed(index) == false) {
+        usedIndexes.add(index);
+        currentWord += tiles[index].letter;
+        print(tiles[index].letter);
+      }
+    }
   }
+}
+
+boolean alreadyUsed(int index) {
+  for(int indexes : usedIndexes) {
+    if (indexes == index) {
+      return true;
+    }
   }
+  return false;
 }
