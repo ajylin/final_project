@@ -21,6 +21,11 @@ public Tile[] tiles = new Tile[16];
 // current word
 public String currentWord = "";
 
+// timer related
+int startTime;
+int currentTime;
+int interval = 1000;
+String timeStr = "00";
 
 
 void dictionaries(){
@@ -81,13 +86,27 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
+  startTime = millis();
+}
+
+void time(){
+  if(! timeStr.equals("90")){
+  if (millis()-startTime>interval){
+    currentTime = int(millis()/1000);
+    timeStr = nf(currentTime,2);
+    startTime = millis();    
+  }
+  }
+  textSize(104);
+  text(timeStr,450,118);
 }
 
 void draw() {
   background(179, 215, 146);
-  score();  
+  score(); 
   board();
   currentWord();
+  time();
 }
 
 void currentWord(){
