@@ -148,7 +148,7 @@ void keyPressed(){
 
 void mousePressed() {
   for (int index = 0; index < 16; index++) {
-      if (mouseX > tiles[index].xInt && mouseX < tiles[index].xInt + 116 && mouseY > tiles[index].yInt && mouseY < tiles[index].yInt+116) {
+      if (mouseX > tiles[index].xInt + 20 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt + 20 && mouseY < tiles[index].yInt+96) {
         usedIndexes.add(index); 
         currentWord += tiles[index].letter;
         System.out.println(tiles[index].letter);
