@@ -2,6 +2,7 @@ class Tile {
   public String letter;
   public int xInt;
   public int yInt;
+  public boolean glow = false;
   
   public Tile(int startX, int startY, String[][] map){
     xInt = startX*118+90;
@@ -9,6 +10,7 @@ class Tile {
     stroke(51, 105, 3);
     strokeWeight(7);
     fill(241, 222, 189);
+    if (glow) stroke(100, 200, 100);
     rect(xInt, yInt, 116, 116, 28);
     letter = map[startY][startX];
     //System.out.println(letter);
