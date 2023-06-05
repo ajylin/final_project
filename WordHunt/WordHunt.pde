@@ -20,12 +20,8 @@ public Tile[] tiles = new Tile[16];
 
 // current word
 public String currentWord = "";
+public ArrayList<Integer> usedIndexes = new ArrayList<Integer>();
 
-// timer related
-int startTime;
-int currentTime;
-int interval = 1000;
-String timeStr = "00";
 
 
 void dictionaries(){
@@ -86,27 +82,13 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
-  startTime = millis();
-}
-
-void time(){
-  if(! timeStr.equals("90")){
-  if (millis()-startTime>interval){
-    currentTime = int(millis()/1000);
-    timeStr = nf(currentTime,2);
-    startTime = millis();    
-  }
-  }
-  textSize(104);
-  text(timeStr,450,118);
 }
 
 void draw() {
   background(179, 215, 146);
-  score(); 
+  score();  
   board();
   currentWord();
-  time();
 }
 
 void currentWord(){
@@ -165,33 +147,47 @@ void keyPressed(){
 }
 
 void mousePressed() {
-  for (Tile tile :tiles){
-      if (mouseX > tile.xInt && mouseX<tile.xInt + 116 && mouseY > tile.yInt && mouseY < tile.yInt+116){
-       System.out.println(tile.letter);
+  for (int index = 0; index < 16; index++) {
+      if (mouseX > tiles[index].xInt + 20 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt + 20 && mouseY < tiles[index].yInt+96) {
+        usedIndexes.add(index); 
+        currentWord += tiles[index].letter;
+        System.out.println(tiles[index].letter);
   }
   }  
 }
 
 void mouseReleased(){
-  for (String s :dictionary){
+  for (String s : dictionary){
     if (s.equals(currentWord)){
       score += ((currentWord.length()-2) *100);
       words++;
     }
     currentWord = "";
   }
+  usedIndexes.clear();
 }
 
 void mouseMoved() {
 }
 
 void mouseDragged() {
-    for (Tile tile :tiles){
-      if (mouseX > tile.xInt && mouseX<tile.xInt + 116 && mouseY > tile.yInt && mouseY < tile.yInt+116){
-       System.out.println(tile.letter);
-       //if (currentWord.
-       currentWord += tile.letter;
-       System.out.println(currentWord);
+  int newLetter = 0;
+  for (int index = 0; index < 16; index++) {
+    if (mouseX > tiles[index].xInt && mouseX < tiles[index].xInt + 116 && mouseY > tiles[index].yInt && mouseY < tiles[index].yInt + 116) {
+      if (alreadyUsed(index) == false) {
+        usedIndexes.add(index);
+        currentWord += tiles[index].letter;
+        print(tiles[index].letter);
+      }
+    }
   }
+}
+
+boolean alreadyUsed(int index) {
+  for(int indexes : usedIndexes) {
+    if (indexes == index) {
+      return true;
+    }
   }
+  return false;
 }
