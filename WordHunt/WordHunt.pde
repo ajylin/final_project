@@ -22,9 +22,6 @@ public Tile[] tiles = new Tile[16];
 public String currentWord = "";
 public ArrayList<Integer> usedIndexes = new ArrayList<Integer>();
 
-//color
-public boolean glow = false;
-
 void dictionaries() {
   if (mode == 0) {
     dictionary = loadStrings("dictionaries/dict1.txt");
@@ -82,7 +79,6 @@ void setup() {
   fill(51, 105, 3);
   width = 650;
   height = 800;
-  glow = false;
   dictionaries();
   maps();
 }
@@ -109,7 +105,7 @@ void board() {
   rect(80, 275, 490, 490, 28);
   for (int startY = 0; startY < 4; startY++) {
     for (int startX = 0; startX < 4; startX++) {
-      tiles[tileNum] = new Tile(startX, startY, map, glow);
+      tiles[tileNum] = new Tile(startX, startY, map);
       tileNum++;
     }
   }
@@ -151,13 +147,13 @@ void keyPressed(){
 
 void mousePressed() {
   for (int index = 0; index < 16; index++) {
-      if (mouseX > tiles[index].xInt && mouseX < tiles[index].xInt + 116 && mouseY > tiles[index].yInt && mouseY < tiles[index].yInt+116) {
-        glow = true;
+      if (mouseX > tiles[index].xInt + 20 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt + 20 && mouseY < tiles[index].yInt+96) {
         usedIndexes.add(index); 
+        tiles[index].glow(tiles[index].xInt, tiles[index].yInt);
         currentWord += tiles[index].letter;
         System.out.println(tiles[index].letter);
       }
-  }  
+  }
 }
 
 void mouseReleased() {
@@ -168,7 +164,6 @@ void mouseReleased() {
     }
     currentWord = "";
   }
-  glow = false;
   usedIndexes.clear();
 }
 
@@ -181,7 +176,7 @@ void mouseDragged() {
     if (mouseX > tiles[index].xInt+20 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt+20 && mouseY < tiles[index].yInt + 96) {
       if (alreadyUsed(index) == false) {
         usedIndexes.add(index);
-        glow = true;
+        tiles[index].glow(tiles[index].xInt, tiles[index].yInt);
         currentWord += tiles[index].letter;
         print(tiles[index].letter);
       }
