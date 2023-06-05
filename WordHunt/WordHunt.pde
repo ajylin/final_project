@@ -150,7 +150,7 @@ void mousePressed() {
   for (int index = 0; index < 16; index++) {
       if (mouseX > tiles[index].xInt + 20 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt + 20 && mouseY < tiles[index].yInt+96) {
         usedIndexes.add(index); 
-        tile[index].glow(tile[index].xInt, tile[index].yInt);
+        tiles[index].glow(tiles[index].xInt, tiles[index].yInt);
         currentWord += tiles[index].letter;
         System.out.println(tiles[index].letter);
   }
@@ -177,7 +177,7 @@ void mouseDragged() {
     if (mouseX > tiles[index].xInt && mouseX < tiles[index].xInt + 116 && mouseY > tiles[index].yInt && mouseY < tiles[index].yInt + 116) {
       if (alreadyUsed(index) == false) {
         usedIndexes.add(index);
-        tile[index].glow(tile[index].xInt, tile[index].yInt);
+        tiles[index].glow(tiles[index].xInt, tiles[index].yInt);
         currentWord += tiles[index].letter;
         print(tiles[index].letter);
       }
