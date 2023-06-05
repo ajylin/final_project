@@ -17,7 +17,9 @@ class Tile {
     text(letter, xInt+20, yInt+90);
   }
   
-  public void glow() {
-    
+  public void glow(int xInt, int yInt) {
+    noFill();
+    stroke(255, 237, 152);
+    rect(xInt, yInt, 116, 116, 28);
   }
 }
