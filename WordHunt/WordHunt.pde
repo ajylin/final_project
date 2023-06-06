@@ -29,8 +29,8 @@ int currentTime;
 int interval = 1000;
 String timeStr = "00";
 
-
-
+// font
+PFont mono;
 
 void dictionaries(){
   if (mode == 0){
@@ -111,15 +111,30 @@ void currentWord(){
 }
 
 void time(){
-  if(! timeStr.equals("90")){
+  if(! timeStr.equals("02")){
   if (millis()-startTime>interval){
     currentTime = int(millis()/1000);
     timeStr = nf(currentTime,2);
     startTime = millis();    
   }
-  }
   textSize(104);
   text(timeStr,450,118);
+  }
+  else{
+    fill(51,105,3);
+    rect(0,0,700,800);
+    fill(0,0,0);
+    textSize(100);
+    textAlign(CENTER);
+    text("Congrats!",300,100);
+    text("You got", 300, 200);
+    text(words, 300,300);
+    text("words!",300,400);
+    text ("Your score was:", 320,500);
+    text(score, 300,600);
+    
+  }
+ 
 }
 
 
