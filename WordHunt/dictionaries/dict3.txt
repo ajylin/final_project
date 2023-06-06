@@ -1,4 +1,5 @@
-dict3: 165 wordsREMITTAL
+dict3: 165 words
+REMITTAL
 GREMIAL
 EMIGRE
 HIEMAL
