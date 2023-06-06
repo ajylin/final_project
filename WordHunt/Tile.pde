@@ -13,13 +13,15 @@ class Tile {
     if (glow) stroke(100, 200, 100);
     rect(xInt, yInt, 116, 116, 28);
     letter = map[startY][startX];
-    //System.out.println(letter);
     fill (0,0,0);
     textSize(100);
     text(letter, xInt+20, yInt+90);
   }
   
-  public void glow() {
-    
+  void glow(int startX, int startY) {
+    noFill();
+    stroke(255, 237, 152);
+    strokeWeight(6);
+    rect(xInt, yInt, 116, 116, 28);
   }
 }
