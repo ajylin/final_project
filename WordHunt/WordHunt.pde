@@ -23,10 +23,6 @@ public Tile[] tiles = new Tile[16];
 public String currentWord = "";
 public ArrayList<Integer> usedIndexes = new ArrayList<Integer>();
 
-<<<<<<< HEAD
-void dictionaries() {
-  if (mode == 0) {
-=======
 //timer
 int startTime;
 int currentTime;
@@ -38,7 +34,6 @@ PFont mono;
 
 void dictionaries(){
   if (mode == 0){
->>>>>>> cd6a95d61840b84bc935cecd3640acc6a8f87b11
     dictionary = loadStrings("dictionaries/dict1.txt");
     for (int i = 0 ; i < dictionary.length; i++) {
       //System.out.println(dictionary[i]);
@@ -190,32 +185,9 @@ void keyPressed(){
     }  
   }
 }
-/*
-void mousePressed() {
-  for (int index = 0; index < 16; index++) {
-<<<<<<< HEAD
-      if (mouseX > tiles[index].xInt + 20 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt + 20 && mouseY < tiles[index].yInt+96) {
-        usedIndexes.add(index); 
-        tiles[index].glow(tiles[index].xInt, tiles[index].yInt);
-        currentWord += tiles[index].letter;
-        System.out.println(tiles[index].letter);
-      }
-  }
-}
 
-void mouseReleased() {
-=======
-      if (mouseX > tiles[index].xInt + 30 && mouseX < tiles[index].xInt + 90 && mouseY > tiles[index].yInt + 30 && mouseY < tiles[index].yInt+90) {
-        tiles[index].glow = true;
-        //usedIndexes.add(index); 
-        currentWord += tiles[index].letter;
-        //System.out.println(tiles[index].letter);
-  }
-  }  
-}*/
 void mouseReleased(){
   boolean inIt = false;
->>>>>>> cd6a95d61840b84bc935cecd3640acc6a8f87b11
   for (String s : dictionary){
     if (s.equals(currentWord)){
       for (String w :usedWords){
@@ -249,11 +221,7 @@ void mouseMoved() {
 void mouseDragged() {
   int newLetter = 0;
   for (int index = 0; index < 16; index++) {
-<<<<<<< HEAD
-    if (mouseX > tiles[index].xInt+20 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt+20 && mouseY < tiles[index].yInt + 96) {
-=======
    if (mouseX > tiles[index].xInt + 25 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt + 25 && mouseY < tiles[index].yInt+96) {
->>>>>>> cd6a95d61840b84bc935cecd3640acc6a8f87b11
       if (alreadyUsed(index) == false) {
        tiles[index].glow = true;
         usedIndexes.add(index);
