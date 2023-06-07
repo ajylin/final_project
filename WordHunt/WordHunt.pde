@@ -91,7 +91,10 @@ void setup() {
   height = 800;
   dictionaries();
   maps();
+  System.out.println(mode);
+  if (home ==1){
   startTime = millis();
+  }
   
 }
 
@@ -119,6 +122,7 @@ void currentWord(){
 }
 
 void time(){
+  currentTime-=millis();
   if(! timeStr.equals("90")){
   if (millis()-startTime>interval){
     currentTime = int(millis()/1000);
@@ -128,7 +132,9 @@ void time(){
   textSize(104);
   text(timeStr,450,118);
   }
-  else{
+  else endPage();
+}
+void endPage(){
     fill(51,105,3);
     rect(0,0,700,800);
     fill(0,0,0);
@@ -141,11 +147,8 @@ void time(){
     text ("Your score was:", 320,420);
     text(score, 300,500);
     textSize(40);
-    text("Press 'r' to restart", 300,580);
-    
-  }
- 
-}
+    text("Press 'r' to restart", 300,580);    
+  }   
 
 void homePage(){
   textAlign(LEFT);
@@ -188,19 +191,32 @@ void reset() {
   score = 0;
   words = 0;
   home=0;
-  currentTime=0;
   usedWords.clear();
   setup();
 }
 
 void keyPressed(){
   if (keyPressed){
+    if (key=='1'){
+      mode = 0;
+      dictionaries();
+      maps();
+    }
+    if (key=='2'){
+      mode = 1;
+      dictionaries();
+      maps();
+    }
+    if (key=='3') {
+      mode = 2;
+      dictionaries();
+      maps();
+    }
+    System.out.println(mode);
     if (key =='s') home = 1;
     if(key=='r') reset();
-    if (key=='1') mode = 0;
-    if (key=='2') mode =1;
-    if (key=='3') mode = 2;
     if (key== CODED){
+      /*
       if (keyCode == LEFT){
         mode--;
         if (mode <0) mode = 2;
@@ -210,7 +226,7 @@ void keyPressed(){
         mode++;
         if (mode>2) mode = 0;
         reset();
-      }
+      }*/
     }  
   }
 }
