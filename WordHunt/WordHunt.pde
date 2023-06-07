@@ -178,6 +178,7 @@ void board() {
 
 
 void score() {
+  stroke(51, 105, 3);
   fill (255,255,255);
   rect (80,35,490,105,28);
   fill (51,105,3);
