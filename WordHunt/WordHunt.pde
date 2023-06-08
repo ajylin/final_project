@@ -23,10 +23,6 @@ public Tile[] tiles = new Tile[16];
 public String currentWord = "";
 public ArrayList<Integer> usedIndexes = new ArrayList<Integer>();
 
-<<<<<<< HEAD
-void dictionaries() {
-  if (mode == 0) {
-=======
 //timer
 int startTime;
 int currentTime;
@@ -36,21 +32,23 @@ String timeStr = "00";
 // font
 PFont mono;
 
+// screens
+int home = 2;
+
 void dictionaries(){
   if (mode == 0){
->>>>>>> cd6a95d61840b84bc935cecd3640acc6a8f87b11
     dictionary = loadStrings("dictionaries/dict1.txt");
     for (int i = 0 ; i < dictionary.length; i++) {
       //System.out.println(dictionary[i]);
       }
   }
-  else if (mode == 1) {
+  else if (mode == 1){
     dictionary = loadStrings("dictionaries/dict2.txt");
     for (int i = 0 ; i < dictionary.length; i++) {
       //System.out.println(dictionary[i]);
       }
   }
-  else {
+  else{
     dictionary = loadStrings("dictionaries/dict3.txt");
     for (int i = 0 ; i < dictionary.length; i++) {
       //System.out.println(dictionary[i]);
@@ -68,24 +66,24 @@ void maps() {
     for (String s : tempMap){
       System.out.println(s);
     }
-  }
-  if (mode ==1){
+    }
+   if (mode ==1){
     tempMap = loadStrings("maps/map2.txt");
     for (String s : tempMap){
       System.out.println(s);
     }
-  }
-  if (mode ==2){
+   }
+   if (mode ==2){
     tempMap = loadStrings("maps/map3.txt");
     for (String s : tempMap){
       System.out.println(s);
     }
-  }
-  for (int row = 0; row <4; row++){
-    for (int col = 0; col<4; col++){
-      map[row][col] = tempMap[row].substring(col, col+1);
+   }
+   for (int row = 0; row <4; row++){
+     for (int col = 0; col<4; col++){
+        map[row][col] = tempMap[row].substring(col, col+1);
+      }
     }
-  }
 }
 
 void setup() {
@@ -101,11 +99,23 @@ void setup() {
 }
 
 void draw() {
-  background(179, 215, 146);
-  score();  
-  board();
-  currentWord();
-  time();
+  if (home == 0) {
+    //
+  }
+  if (home == 1) {
+    inGame();
+  }
+  if (home == 2) {
+    endScreen();
+  }
+}
+
+void inGame() {
+    background(179, 215, 146);
+    score();  
+    board();
+    currentWord();
+    time();
 }
 
 void currentWord(){
@@ -140,9 +150,7 @@ void time(){
     text(score, 300,600);
     
   }
- 
 }
-
 
 void board() {
   stroke(206, 246, 170);
@@ -157,8 +165,7 @@ void board() {
   }
 }
 
-
-void score() {
+void score(){
   fill (255,255,255);
   rect (80,35,490,105,28);
   fill (51,105,3);
@@ -190,32 +197,9 @@ void keyPressed(){
     }  
   }
 }
-/*
-void mousePressed() {
-  for (int index = 0; index < 16; index++) {
-<<<<<<< HEAD
-      if (mouseX > tiles[index].xInt + 20 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt + 20 && mouseY < tiles[index].yInt+96) {
-        usedIndexes.add(index); 
-        tiles[index].glow(tiles[index].xInt, tiles[index].yInt);
-        currentWord += tiles[index].letter;
-        System.out.println(tiles[index].letter);
-      }
-  }
-}
 
-void mouseReleased() {
-=======
-      if (mouseX > tiles[index].xInt + 30 && mouseX < tiles[index].xInt + 90 && mouseY > tiles[index].yInt + 30 && mouseY < tiles[index].yInt+90) {
-        tiles[index].glow = true;
-        //usedIndexes.add(index); 
-        currentWord += tiles[index].letter;
-        //System.out.println(tiles[index].letter);
-  }
-  }  
-}*/
 void mouseReleased(){
   boolean inIt = false;
->>>>>>> cd6a95d61840b84bc935cecd3640acc6a8f87b11
   for (String s : dictionary){
     if (s.equals(currentWord)){
       for (String w :usedWords){
@@ -224,18 +208,12 @@ void mouseReleased(){
         }
       }
       if (!inIt){
-      score += ((currentWord.length()-2) *100);
-      words++;
-      usedWords.add(s);
-      fill(100, 200, 100);
-      textSize(50);
-      text(currentWord, 100, 215); 
-      text(currentWord, 100, 215);
-      text(currentWord, 100, 215);
+        score += ((currentWord.length()-2) *100);
+        words++;
+        usedWords.add(s);
     }
     }
   }
-  currentWord = "";
   for (int i:usedIndexes){
     tiles[i].glow = false;
   }
@@ -249,15 +227,10 @@ void mouseMoved() {
 void mouseDragged() {
   int newLetter = 0;
   for (int index = 0; index < 16; index++) {
-<<<<<<< HEAD
-    if (mouseX > tiles[index].xInt+20 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt+20 && mouseY < tiles[index].yInt + 96) {
-=======
    if (mouseX > tiles[index].xInt + 25 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt + 25 && mouseY < tiles[index].yInt+96) {
->>>>>>> cd6a95d61840b84bc935cecd3640acc6a8f87b11
       if (alreadyUsed(index) == false) {
        tiles[index].glow = true;
         usedIndexes.add(index);
-        tiles[index].glow(tiles[index].xInt, tiles[index].yInt);
         currentWord += tiles[index].letter;
         //System.out.println(currentWord);
         //print(tiles[index].letter);
@@ -273,4 +246,13 @@ boolean alreadyUsed(int index) {
     }
   }
   return false;
+}
+
+void endScreen() {
+      background(179, 215, 146);
+      textSize(50);
+      text(currentWord, 100, 300); 
+      text(currentWord, 100, 500);
+      text(currentWord, 100, 600);
+      currentWord = "";
 }

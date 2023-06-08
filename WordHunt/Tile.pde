@@ -1,4 +1,4 @@
-class Tile {
+public class Tile {
   public String letter;
   public int xInt;
   public int yInt;
