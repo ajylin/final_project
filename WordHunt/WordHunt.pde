@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 // home
 int home =0;
+
 // mode
 int mode;
 
@@ -13,6 +14,7 @@ public String[][] map = new String[4][4];
 //dictionaries
 String[] dictionary;
 public ArrayList<String> usedWords = new ArrayList<String>();
+public ArrayList<String> sortedLengths = new ArrayList<String>();
 
 // scores
 int words = 0;
@@ -31,10 +33,6 @@ int currentTime;
 int interval = 1000;
 String timeStr = "00";
 
-
-// screens
-int home = 2;
-
 void dictionaries(){
   if (mode == 0){
     dictionary = loadStrings("dictionaries/dict1.txt");
@@ -42,13 +40,13 @@ void dictionaries(){
       //System.out.println(dictionary[i]);
       }
   }
-  else if (mode == 1){
+  else if (mode == 1) {
     dictionary = loadStrings("dictionaries/dict2.txt");
     for (int i = 0 ; i < dictionary.length; i++) {
       //System.out.println(dictionary[i]);
       }
   }
-  else{
+  else {
     dictionary = loadStrings("dictionaries/dict3.txt");
     for (int i = 0 ; i < dictionary.length; i++) {
       //System.out.println(dictionary[i]);
@@ -66,24 +64,24 @@ void maps() {
     for (String s : tempMap){
       System.out.println(s);
     }
-    }
-   if (mode ==1){
+  }
+  if (mode ==1){
     tempMap = loadStrings("maps/map2.txt");
     for (String s : tempMap){
       System.out.println(s);
     }
-   }
-   if (mode ==2){
+  }
+  if (mode ==2){
     tempMap = loadStrings("maps/map3.txt");
     for (String s : tempMap){
       System.out.println(s);
     }
-   }
-   for (int row = 0; row <4; row++){
-     for (int col = 0; col<4; col++){
-        map[row][col] = tempMap[row].substring(col, col+1);
-      }
+  }
+  for (int row = 0; row <4; row++){
+    for (int col = 0; col<4; col++){
+      map[row][col] = tempMap[row].substring(col, col+1);
     }
+  }
 }
 
 void setup() {  
@@ -102,26 +100,8 @@ void setup() {
 }
 
 void draw() {
-<<<<<<< HEAD
-  if (home == 0) {
-    //
-  }
-  if (home == 1) {
-    inGame();
-  }
-  if (home == 2) {
-    endScreen();
-  }
-}
-
-void inGame() {
-    background(179, 215, 146);
-    score();  
-    board();
-    currentWord();
-    time();
-=======
   //homePage();
+  //endPage();
   if (home==0){
     homePage();
   }
@@ -131,17 +111,15 @@ void inGame() {
   board();
   currentWord();
   time();
-  }
-  
->>>>>>> 9ee94024b12dc2a917e4732506381a2410cd814f
+  } 
 }
 
 void currentWord(){
   fill (255,255,255);
-  rect (80,159,480,100,28);
+  rect (80,159,490,100,28);
   fill (51,105,3);
   textSize(50);
-  text(currentWord, 100, 215); 
+  text(currentWord, 100, 225); 
 }
 
 void time(){
@@ -157,47 +135,85 @@ void time(){
   }
   else endPage();
 }
+
 void endPage(){
-    fill(51,105,3);
+    fill(179, 215, 146);
     rect(0,0,700,800);
-    fill(0,0,0);
+    noStroke();
+    fill(212, 238, 193);
+    rect(145,240,360,95,28);
+    fill(23, 50, 2);
+    fill(23, 50, 2);
     textSize(100);
     textAlign(CENTER);
-    text("Congrats!",300,100);
-<<<<<<< HEAD
-    text("You got", 300, 200);
-    text(words, 300,300);
-    text("words!",300,400);
-    text ("Your score was:", 320,500);
-    text(score, 300,600);
-    
-  }
-}
-
-=======
-    text("You got", 300, 180);
-    text(words, 300,260);
-    text("words!",300,340);
-    text ("Your score was:", 320,420);
-    text(score, 300,500);
-    textSize(40);
-    text("Press 'r' to restart", 300,580);    
+    text("Time's Up!", 320,235);
+    String endCount = "";
+    endCount = "You got " + words+ " words!";
+    textSize(35);
+    text(endCount, 320, 282);
+    String endScore = "";
+    endScore = "Final Score: " + score;
+    text (endScore, 320,312);
+    fill(130, 173, 99);
+    rect(70, 340, 510, 315, 28);
+    textAlign(LEFT);
+    fill(23, 50, 2);
+    text("Your Words: ", 95, 385);
+    if (words > 0) {
+      for (int index = 0; index < 24; index++) {
+        if (index / 8 == 0) {
+          text(usedWords.get(index), 110, 425 + index*30+2);
+            if (index == usedWords.size()-1) {
+              break;
+            }
+        }
+        if (index / 8 == 1) {
+          text(usedWords.get(index), 260, 425 + (index%8)*30+2);
+            if (index == usedWords.size()-1) {
+              break;
+            }
+        }
+        if (index / 8 == 2) {
+          if (index == 23) {
+            break;
+          }
+          text(usedWords.get(index), 410, 425 + (index%8)*30+2);
+          if (index == usedWords.size()-1) {
+            break;
+          }
+        }
+      }
+    }
+    if (words > 23) {
+      textSize(20);
+      text("and more...", 410, 633);
+    }
+    textSize(20);
+    textAlign(CENTER);
+    text("Press 'r' to restart", 325,760);   
   }   
 
 void homePage(){
-  textAlign(LEFT);
-  textSize(25);
+  textAlign(CENTER);
+  textSize(50);
   fill(51,105,3);
   rect(800,600,0,0);
-  text("Welcome to Wordhunt!",10 ,20);
-  text("How to play: ", 10, 50);
-  text("-Drag your mouse across the letters to form words\n-Release your mouse when you think you have a word\n-If your word is valid, your score will go up!\n-You have 90 seconds to find as many words as possible.\n-The longer the word, the better", 10,80);
-  text("Modes: ", 10, 300);
-  text("-Press 1 for the easiest mode\n-Press 2 for the medium mode\n-Press 3 for the hardest mode." , 10, 320);
-  text("Press 's' to start your game.", 10,500);
+  text("Welcome to Wordhunt!", 325 ,150);
+  textAlign(LEFT);
+  textSize(35);
+  text("How to play: ", 50, 225);
+  textSize(20);
+  text("- Drag your mouse across the letters to form words.\n- Release your mouse when you think you have a word.\n- If your word is valid, your score will go up!\n- You have 90 seconds to find as many words as possible.\n- The longer the word, the better!", 50,260);
+  textSize(35);
+  text("Modes: ", 50, 465);
+  textSize(20);
+  text("- Press 1 for the easiest mode\n- Press 2 for the medium mode\n- Press 3 for the hardest mode.\n - Note: Choose your mode before pressing play!" , 60, 500);
+  textAlign(CENTER);
+  textSize(20);
+  text("Press 's' to start your game.\n Happy hunting!", 325,675);
+  textAlign(LEFT);
 }
 
->>>>>>> 9ee94024b12dc2a917e4732506381a2410cd814f
 void board() {
   stroke(206, 246, 170);
   strokeWeight(7);
@@ -211,13 +227,9 @@ void board() {
   }
 }
 
-<<<<<<< HEAD
-void score(){
-=======
 
 void score() {
   stroke(51, 105, 3);
->>>>>>> 9ee94024b12dc2a917e4732506381a2410cd814f
   fill (255,255,255);
   rect (80,35,490,105,28);
   fill (51,105,3);
@@ -281,12 +293,53 @@ void mouseReleased(){
         }
       }
       if (!inIt){
-        score += ((currentWord.length()-2) *100);
-        words++;
-        usedWords.add(s);
+        int points = 0;
+        if (currentWord.length() == 3) {
+          points = 100;
+        }
+        if (currentWord.length() == 4) {
+          points = 400;
+        }
+        if (currentWord.length() == 5) {
+          points = 800;
+        }
+        if (currentWord.length() == 6) {
+          points = 1400;
+        }
+        if (currentWord.length() == 7) {
+          points = 1800;
+        }
+        if (currentWord.length() == 8) {
+          points = 2200;
+        }
+      score += (points);
+      words++;
+      /*
+        if (words == 1) {
+          usedWords.add(s);
+        }
+        if (words != 1) {
+          */
+          int wordLength = currentWord.length();
+          int insertIndex = usedWords.size();
+          for (int index = 0; index < usedWords.size(); index++) {
+            if (wordLength > usedWords.get(index).length()) {
+              insertIndex = index;
+            }
+          }
+          usedWords.add(insertIndex, s);
+        //}
+      fill(100, 200, 100);
+      textSize(50);
+      text(currentWord, 100, 225); 
+      text(currentWord, 100, 225);
+      text(currentWord, 100, 225);
+      text(currentWord, 100, 225);
+      text(currentWord, 100, 225);
     }
     }
   }
+  currentWord = "";
   for (int i:usedIndexes){
     tiles[i].glow = false;
   }
@@ -302,6 +355,7 @@ void mouseDragged() {
       if (alreadyUsed(index) == false) {
        tiles[index].glow = true;
         usedIndexes.add(index);
+        tiles[index].glow(tiles[index].xInt, tiles[index].yInt);
         currentWord += tiles[index].letter;
         //System.out.println(currentWord);
         //print(tiles[index].letter);
@@ -320,11 +374,9 @@ boolean alreadyUsed(int index) {
   return false;
 }
 
-void endScreen() {
-      background(179, 215, 146);
-      textSize(50);
-      text(currentWord, 100, 300); 
-      text(currentWord, 100, 500);
-      text(currentWord, 100, 600);
-      currentWord = "";
+void sortLengths(){
+  int maxLength = 0;
+  for (int index = 0; index < usedWords.size(); index++) {
+    String word = usedWords.get(index); 
+  }
 }
