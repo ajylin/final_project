@@ -2,8 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+// home
+int home =0;
 // mode
-int mode = 2;
+int mode;
 
 // maps
 public String[][] map = new String[4][4];
@@ -29,8 +31,6 @@ int currentTime;
 int interval = 1000;
 String timeStr = "00";
 
-// font
-PFont mono;
 
 // screens
 int home = 2;
@@ -86,19 +86,23 @@ void maps() {
     }
 }
 
-void setup() {
+void setup() {  
   size(650, 800);
   background(179, 215, 146);
   fill(51, 105, 3);
   width = 650;
   height = 800;
-  usedWords.clear();
   dictionaries();
   maps();
+  System.out.println(mode);
+  if (home ==1){
   startTime = millis();
+  }
+  
 }
 
 void draw() {
+<<<<<<< HEAD
   if (home == 0) {
     //
   }
@@ -116,6 +120,20 @@ void inGame() {
     board();
     currentWord();
     time();
+=======
+  //homePage();
+  if (home==0){
+    homePage();
+  }
+  else{    
+  background(179, 215, 146);
+  score();  
+  board();
+  currentWord();
+  time();
+  }
+  
+>>>>>>> 9ee94024b12dc2a917e4732506381a2410cd814f
 }
 
 void currentWord(){
@@ -127,7 +145,8 @@ void currentWord(){
 }
 
 void time(){
-  if(! timeStr.equals("02")){
+  currentTime-=millis();
+  if(! timeStr.equals("90")){
   if (millis()-startTime>interval){
     currentTime = int(millis()/1000);
     timeStr = nf(currentTime,2);
@@ -136,13 +155,16 @@ void time(){
   textSize(104);
   text(timeStr,450,118);
   }
-  else{
+  else endPage();
+}
+void endPage(){
     fill(51,105,3);
     rect(0,0,700,800);
     fill(0,0,0);
     textSize(100);
     textAlign(CENTER);
     text("Congrats!",300,100);
+<<<<<<< HEAD
     text("You got", 300, 200);
     text(words, 300,300);
     text("words!",300,400);
@@ -152,6 +174,30 @@ void time(){
   }
 }
 
+=======
+    text("You got", 300, 180);
+    text(words, 300,260);
+    text("words!",300,340);
+    text ("Your score was:", 320,420);
+    text(score, 300,500);
+    textSize(40);
+    text("Press 'r' to restart", 300,580);    
+  }   
+
+void homePage(){
+  textAlign(LEFT);
+  textSize(25);
+  fill(51,105,3);
+  rect(800,600,0,0);
+  text("Welcome to Wordhunt!",10 ,20);
+  text("How to play: ", 10, 50);
+  text("-Drag your mouse across the letters to form words\n-Release your mouse when you think you have a word\n-If your word is valid, your score will go up!\n-You have 90 seconds to find as many words as possible.\n-The longer the word, the better", 10,80);
+  text("Modes: ", 10, 300);
+  text("-Press 1 for the easiest mode\n-Press 2 for the medium mode\n-Press 3 for the hardest mode." , 10, 320);
+  text("Press 's' to start your game.", 10,500);
+}
+
+>>>>>>> 9ee94024b12dc2a917e4732506381a2410cd814f
 void board() {
   stroke(206, 246, 170);
   strokeWeight(7);
@@ -165,7 +211,13 @@ void board() {
   }
 }
 
+<<<<<<< HEAD
 void score(){
+=======
+
+void score() {
+  stroke(51, 105, 3);
+>>>>>>> 9ee94024b12dc2a917e4732506381a2410cd814f
   fill (255,255,255);
   rect (80,35,490,105,28);
   fill (51,105,3);
@@ -178,12 +230,33 @@ void score(){
 void reset() {
   score = 0;
   words = 0;
+  home=0;
+  usedWords.clear();
   setup();
 }
 
 void keyPressed(){
   if (keyPressed){
+    if (key=='1'){
+      mode = 0;
+      dictionaries();
+      maps();
+    }
+    if (key=='2'){
+      mode = 1;
+      dictionaries();
+      maps();
+    }
+    if (key=='3') {
+      mode = 2;
+      dictionaries();
+      maps();
+    }
+    System.out.println(mode);
+    if (key =='s') home = 1;
+    if(key=='r') reset();
     if (key== CODED){
+      /*
       if (keyCode == LEFT){
         mode--;
         if (mode <0) mode = 2;
@@ -193,7 +266,7 @@ void keyPressed(){
         mode++;
         if (mode>2) mode = 0;
         reset();
-      }
+      }*/
     }  
   }
 }
@@ -221,10 +294,8 @@ void mouseReleased(){
   //usedWords.clear();
 }
 
-void mouseMoved() {
-}
-
 void mouseDragged() {
+  if (home==1){
   int newLetter = 0;
   for (int index = 0; index < 16; index++) {
    if (mouseX > tiles[index].xInt + 25 && mouseX < tiles[index].xInt + 96 && mouseY > tiles[index].yInt + 25 && mouseY < tiles[index].yInt+96) {
@@ -236,6 +307,7 @@ void mouseDragged() {
         //print(tiles[index].letter);
       }
     }
+   }
   }
 }
 
