@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 // home
-int home =0;
+int home = 0;
 
 // mode
 int mode;
@@ -141,19 +141,19 @@ void endPage(){
     rect(0,0,700,800);
     noStroke();
     fill(212, 238, 193);
-    rect(145,240,360,95,28);
+    rect(145,220,360,95,28);
     fill(23, 50, 2);
     fill(23, 50, 2);
     textSize(100);
     textAlign(CENTER);
-    text("Time's Up!", 320,235);
+    text("Time's Up!", 320,215);
     String endCount = "";
     endCount = "You got " + words+ " words!";
     textSize(35);
-    text(endCount, 320, 282);
+    text(endCount, 320, 262);
     String endScore = "";
     endScore = "Final Score: " + score;
-    text (endScore, 320,312);
+    text (endScore, 320,292);
     fill(130, 173, 99);
     rect(70, 340, 510, 315, 28);
     textAlign(LEFT);
@@ -372,11 +372,4 @@ boolean alreadyUsed(int index) {
     }
   }
   return false;
-}
-
-void sortLengths(){
-  int maxLength = 0;
-  for (int index = 0; index < usedWords.size(); index++) {
-    String word = usedWords.get(index); 
-  }
 }
