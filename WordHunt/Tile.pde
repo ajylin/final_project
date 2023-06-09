@@ -15,7 +15,9 @@ public class Tile {
     letter = map[startY][startX];
     fill (0,0,0);
     textSize(100);
-    text(letter, xInt+20, yInt+90);
+    textAlign(CENTER);
+    text(letter, xInt+55, yInt+90);
+    textAlign(LEFT);
   }
   
   void glow(int startX, int startY) {
